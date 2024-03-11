@@ -10,6 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const __dirname1 = path.resolve();
+
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  );
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("Connected to MongoDB");
 }).catch((err) => {
@@ -140,6 +147,7 @@ app.delete('/post/:postId', verifyToken, async (req, res) => {
     }
 });
     
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
