@@ -10,13 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const __dirname1 = path.resolve();
+// const __dirname1 = path.resolve();
 
-  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+//   app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
-  );
+//   app.get("*", (req, res) =>
+//     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+//   );
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("Connected to MongoDB");
 }).catch((err) => {
@@ -97,6 +97,7 @@ app.get('/posts', verifyToken, async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
+        console.log(posts);
     }
     catch (error) {
         res.status(500).send('Error fetching posts');

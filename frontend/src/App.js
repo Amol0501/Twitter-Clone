@@ -8,6 +8,8 @@ import Login from './Pages/Login';
 import ViewPost from './Pages/ViewPost';
 import Registration from './Pages/Registration';
 import Navbar from './components/Navbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -41,7 +43,7 @@ import Navbar from './components/Navbar';
   
 // ]);
 const App = () => {
-  return (
+  return (<>
     <BrowserRouter>
         <Navbar />
         <Routes>
@@ -49,12 +51,14 @@ const App = () => {
             <Route path='/*' element={<h1>Page not found</h1>} />
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>} />
-            <Route path='/posts/:postID' element={<Posts/>} />
-            <Route path='/posts' element={<ViewPost/>} />
+            <Route path='/posts' element={<Posts/>} />
+            <Route path='/viewposts' element={<ViewPost/>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Registration/>} />
         </Routes>
     </BrowserRouter>
+    <ToastContainer />
+    </>
   )
 }
 

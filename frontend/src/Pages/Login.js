@@ -82,6 +82,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './LoginPage.css';
 
 function Login() {
@@ -107,9 +108,12 @@ function Login() {
         password: password,
       });
       if (response.status === 200) {
-        localStorage.setItem('jwtToken', JSON.stringify(response.data.token));
+        console.log(response)
+         localStorage.setItem('jwtToken',"Bearer " + response.data.token);
+
         setCheckUser(false);
-        navigate('/posts');
+        navigate('/viewposts');
+        toast.success('Login Successfully')
         window.location.reload();
       } else {
         setCheckUser(true);

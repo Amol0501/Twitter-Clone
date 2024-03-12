@@ -61,12 +61,17 @@ function Post() {
     if(localStorage.getItem("jwtToken")){
       (async()=>{
         try{
-          const response=await axios.get('https://jsonplaceholder.typicode.com/posts',{
+          const response = await axios.get("http://localhost:3001/posts", {
+            headers: {
+                authorization: localStorage.getItem("jwtToken")
+            }
           })
+          // const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
+          console.log(response)
           setPosts(response.data);
         }
         catch(error){
-
+          console.log(error);
         }
       })()
       setLogin(true);
@@ -82,9 +87,9 @@ function Post() {
         {login &&
             <div className="post-container">
                 {posts.map((post) => (
-                <div key={post.id} className="post-card">
+                <div key={post._id} className="post-card">
                     <h2>{post.title}</h2>
-                    <p>{post.body}</p>
+                    <p>{post.content}</p>
                 </div>
                 ))}
             </div>

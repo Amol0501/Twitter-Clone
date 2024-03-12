@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 function Navbar() {
   const userJSON = localStorage.getItem('jwtToken');
-  const user = userJSON ? JSON.parse(userJSON) : null;
-  
+  const user = userJSON ? JSON.stringify(userJSON) : null;
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
-    // setIsLogin(false);
+    navigate('/login');
+    toast.success("LogOut Successfully");
     window.location.reload();
   };
 
@@ -20,7 +22,8 @@ function Navbar() {
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to="/"><a>Home</a></Link></li>
-            <li><Link to="/posts"><a>Posts</a></Link></li>
+            <li><Link to="/viewposts"><a>Posts</a></Link></li>
+            <li><Link to="/posts"><a>CreatePost</a></Link></li>
             <li><Link to="/about"><a>About</a></Link></li>
             <li><Link to="/contact"><a>Contact</a></Link></li>
           </ul>
@@ -28,13 +31,19 @@ function Navbar() {
         <Link to="/"><a className="btn btn-ghost text-xl bg-gray-400 hover:bg-gray-400">HotDrop</a></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 gap-2">
           <li><Link to="/"><a>Home</a></Link></li>
-          <li><Link to="/posts"><a>Posts</a></Link></li>
+          <li><Link to="/viewposts"><a>Posts</a></Link></li>
+          <li><Link to="/posts"><a>CreatePost</a></Link></li>
           <li><Link to="/about"><a>About</a></Link></li>
           <li><Link to="/contact"><a>Contact</a></Link></li>
         </ul>
       </div>
+      {/* <div className="navbar-end gap-3">
+          <Link to="/register"><a className="btn bg-gray-300 border-none min-h-4 h-10">Register</a></Link>
+          <Link to="/login"><a className="btn bg-gray-300 border-none min-h-4 h-10">Login</a></Link>
+          <button onClick={handleLogout} className="btn bg-gray-300 border-none min-h-4 h-10">Logout</button>
+      </div> */}
       <div className="navbar-end gap-3">
         {user ? (
           <button onClick={handleLogout} className="btn bg-gray-300 border-none min-h-4 h-10">Logout</button>
