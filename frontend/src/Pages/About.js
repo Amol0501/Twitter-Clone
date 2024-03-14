@@ -1,10 +1,14 @@
 import React from 'react';
-
+import myvideo from "../Video/projectExplanation.mp4";
 function About() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[40rem] bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">About HotDrop</h1>
+        <video className="w-full h-auto mb-8" controls>
+          <source src={myvideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <p className="text-gray-700 text-base text-center mb-8">
           HotDrop is a platform where you can connect with friends and family, share your moments, and join the conversation. With features like messaging, photo and video sharing, and groups, you can stay connected with the people who matter to you.
         </p>

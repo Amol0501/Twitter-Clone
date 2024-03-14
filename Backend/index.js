@@ -97,7 +97,7 @@ app.get('/posts', verifyToken, async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
-        console.log(posts);
+        // console.log(posts);
     }
     catch (error) {
         res.status(500).send('Error fetching posts');

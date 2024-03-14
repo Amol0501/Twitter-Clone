@@ -10,7 +10,7 @@ function Navbar() {
     localStorage.removeItem('jwtToken');
     navigate('/login');
     toast.success("LogOut Successfully");
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

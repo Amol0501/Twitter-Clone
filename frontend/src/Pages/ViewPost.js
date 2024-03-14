@@ -67,7 +67,7 @@ function Post() {
             }
           })
           // const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
-          console.log(response)
+          // console.log(response)
           setPosts(response.data);
         }
         catch(error){

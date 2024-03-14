@@ -111,10 +111,10 @@ function Login() {
         console.log(response)
          localStorage.setItem('jwtToken',"Bearer " + response.data.token);
 
-        setCheckUser(false);
-        navigate('/viewposts');
-        toast.success('Login Successfully')
-        window.location.reload();
+         //  window.location.reload();
+         setCheckUser(false);
+         navigate('/viewposts');
+         toast.success('Login Successfully')
       } else {
         setCheckUser(true);
       }
